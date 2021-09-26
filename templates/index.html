@@ -14,8 +14,8 @@
     <div class="row">
         <div class="col-md-13">
             <div class="jumbotron p-3">
-                <div class="col-5 alert alert-primary" role="alert">
-                <h3>Gerenciar  <b>Agenda</b> <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h3>
+                <div class="col-5 alert alert-secondary" role="alert">
+                <h3>Gerenciar  <b>Agenda</b> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h3>
             </div>
                 {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
 
@@ -34,6 +34,7 @@
                     <tr class="tb">
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Sobrenome</th>
                         <th>Data de Nascimento</th>
                         <th>Email</th>
                         <th>Telefone</th>
@@ -47,6 +48,7 @@
                     <tr class="tbl">
                         <td>{{row.id}}</td>
                         <td>{{row.name}}</td>
+                        <td>{{row.lastname}}</td>
                         <td>{{row.birthdate}}</td>
                         <td>{{row.email}}</td>
                         <td>{{row.phone}}</td>
@@ -71,6 +73,11 @@
                                             <label>Nome</label>
                                             <input type="hidden" name="id" value="{{row.id}}">
                                             <input type="text" class="form-control" name="nome" value="{{row.name}}" required="1">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Sobrenome</label>
+                                            <input type="text" class="form-control" name="lastname" value="{{row.lastname}}" required="1">
                                         </div>
 
                                         <div class="form-group">
@@ -122,6 +129,11 @@
                                 <div class="form-group">
                                     <label>Nome</label>
                                     <input type="text" class="form-control" name="nome" required="1">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Sobrenome</label>
+                                    <input type="text" class="form-control" name="lastname" required="1">
                                 </div>
 
                                 <div class="form-group">

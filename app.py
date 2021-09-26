@@ -14,15 +14,19 @@ db = SQLAlchemy(app)
 class Crud(db.Model):
     id = db.Column(db.Integer , primary_key = True)
     name = db.Column(db.String(100))
+    lastname = db.Column(db.String(100))
+    birthdate = db.Column(db.String(100))
     email = db.Column(db.String(100))
     phone = db.Column(db.String(100))
-    birthdate = db.Column(db.String(100))
+    
 
-    def __init__(self, name, email, phone, birthdate):
+    def __init__(self, name, lastname, birthdate, email, phone):
         self.name = name
+        self.lastname = lastname
+        self.birthdate = birthdate
         self.email = email
         self.phone = phone
-        self.birthdate = birthdate
+        
 
 
 
@@ -35,11 +39,13 @@ def index():
 def insert():
     if request.method == 'POST':
         name = request.form['nome']
+        lastname = request.form['lastname']
+        birthdate = request.form['birthdate']
         email = request.form['email']
         phone = request.form['phone']
-        birthdate = request.form['birthdate']
+        
 
-        my_data = Crud(name, email, phone, birthdate)
+        my_data = Crud(name, lastname, birthdate, email, phone)
         db.session.add(my_data)
         db.session.commit()
 
@@ -51,9 +57,11 @@ def update():
     if request.method == "POST":
         my_date = Crud.query.get(request.form.get('id'))
         my_date.name = request.form['nome']
+        my_date.lastname = request.form['lastname']
+        my_date.birthdate = request.form['birthdate']
         my_date.email = request.form['email']
         my_date.phone = request.form['phone']
-        my_date.birthdate = request.form['birthdate']
+        
 
         db.session.commit()
         flash("Alterado com sucesso")
