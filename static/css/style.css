@@ -1,0 +1,29 @@
+.table{
+    background-color: #0059A4;
+    color:#ffff
+}
+
+.tb{
+    font-size: large;
+}
+
+.tbl{
+    font-size: large;
+}
+
+.btn{
+    font-size: medium;
+}
+
+.container{
+    background-color: #3B398F;
+    margin-top: 60px;
+}
+
+body{
+    background-color: #41405C;
+}
+
+.remove{
+    background-color: #C71004;
+}
