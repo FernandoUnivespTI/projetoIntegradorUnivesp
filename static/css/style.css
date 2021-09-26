@@ -27,3 +27,15 @@ body{
 .remove{
     background-color: #C71004;
 }
+
+.modal-header{
+    background-color: #212529;
+}
+
+.modal-body{
+    background-color: #212529;
+}
+
+h4{
+    color:#fff;
+}

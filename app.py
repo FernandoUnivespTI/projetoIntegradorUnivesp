@@ -49,7 +49,7 @@ def insert():
         db.session.add(my_data)
         db.session.commit()
 
-        flash("Employee Inserted Successfully")
+        flash("Paciente inserido com sucesso")
         return redirect(url_for('index'))
 
 @app.route('/update', methods = ['POST'])
@@ -64,7 +64,7 @@ def update():
         
 
         db.session.commit()
-        flash("Alterado com sucesso")
+        flash("Paciente alterado com sucesso")
         return redirect(url_for('index'))
 
 @app.route('/delete/<id>/')
@@ -73,7 +73,7 @@ def delete(id):
     db.session.delete(my_data)
     db.session.commit()
 
-    flash("Employee Data Deleted Successfully")
+    flash("Dados do paciente foram excluídos com sucesso")
     return redirect(url_for('index'))
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 {% extends 'base.html' %} {% include 'header.html' %}
 
 <!-- head section -->
-{% block title %} Flask CRUD operation {% endblock %}
+{% block title %} Projeto Integrador {% endblock %}
 
 
 <!-- Body section -->
@@ -19,7 +19,7 @@
             </div>
                 {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
 
-                <div class="alert alert-success alert-dismissable" role="alert">
+                <div class="col-5 alert alert-danger" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="close">
                         <span aria-hidden="true">
                             x 
@@ -35,7 +35,7 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Sobrenome</th>
-                        <th>Data de Nascimento</th>
+                        <th>Data de Nasc.</th>
                         <th>Email</th>
                         <th>Telefone</th>
                         
@@ -64,7 +64,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title"> Atualizar dados de funcionários </h4>
+                                    <h4 class="modal-title"> Atualizar dados do Paciente </h4>
                                 </div>
                                 <div class="modal-body">
                                     <form action="{{url_for('update')}}" method="POST">
