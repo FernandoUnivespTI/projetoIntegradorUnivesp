@@ -26,9 +26,7 @@ class Crud(db.Model):
         self.birthdate = birthdate
         self.email = email
         self.phone = phone
-        
-
-
+       
 
 @app.route('/')
 def index():
@@ -52,6 +50,33 @@ def insert():
         flash("Paciente inserido com sucesso")
         return redirect(url_for('index'))
 
+############################################################
+
+@app.route('/form')
+def indexfo():
+    all_data = Crud.query.all()
+    return render_template("form.html", all_data = all_data)
+
+@app.route('/form', methods = ['POST'])
+def form():
+    if request.method == 'POST':
+        name = request.form['nome']
+        lastname = request.form['lastname']
+        birthdate = request.form['birthdate']
+        email = request.form['email']
+        phone = request.form['phone']
+        
+
+        my_data = Crud(name, lastname, birthdate, email, phone)
+        db.session.add(my_data)
+        db.session.commit()
+
+        flash("Paciente inserido com sucesso")
+        return redirect(url_for('form'))
+
+######################################################################
+
+
 @app.route('/update', methods = ['POST'])
 def update():
     if request.method == "POST":
@@ -62,7 +87,6 @@ def update():
         my_date.email = request.form['email']
         my_date.phone = request.form['phone']
         
-
         db.session.commit()
         flash("Paciente alterado com sucesso")
         return redirect(url_for('index'))
