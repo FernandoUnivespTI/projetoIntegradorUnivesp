@@ -15,7 +15,7 @@
         <div class="col-md-13">
             <div class="jumbotron p-3">
                 <div class="col-5 alert alert-secondary" role="alert">
-                <h3>Gerenciar  <b>Agenda</b> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h3>
+                <h1 class="h1-2">  <strong> Gerenciar</strong> <b>Agenda</b> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h1>
             </div>
                 {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
 
@@ -28,30 +28,31 @@
                 </div>
 
                 {% endfor %} {% endif %} {%endwith%}
-
-                <table class="table table-dark table-hover">
-
+                
+                 <table id="lista" class=" table table-dark table-hover">
                     <tr class="tb">
                         <th>ID</th>
-                        <th>Nome</th>
-                        <th>Sobrenome</th>
+                        <th>Nome Sobrenome</th>
                         <th>Data de Nasc.</th>
                         <th>Email</th>
                         <th>Telefone</th>
-                        
+                        <th>Agendamento</th>
+                  
+                
                         <th>Ação</th>
                     </tr>
-
+                    
                     {% for row in all_data %}
-                
+                    
                 
                     <tr class="tbl">
                         <td>{{row.id}}</td>
-                        <td>{{row.name}}</td>
-                        <td>{{row.lastname}}</td>
+                        <td>{{row.name}} {{row.lastname}}</td>
                         <td>{{row.birthdate}}</td>
                         <td>{{row.email}}</td>
                         <td>{{row.phone}}</td>
+                        <td>{{row.adddate}} ás {{row.hour}}</td>
+                            
                         
                         <td>
                             <a href="/update/{{row.id}}" class="btn btn-primary" data-toggle="modal" data-target="#modaledit{{row.id}}">Editar</a>
@@ -79,10 +80,10 @@
                                             <label>Sobrenome</label>
                                             <input type="text" class="form-control" name="lastname" value="{{row.lastname}}" required="1">
                                         </div>
-
+                                        
                                         <div class="form-group">
                                             <label>Data de Nascimento</label>
-                                            <input type="date" class="form-control" name="birthdate" value="{{row.birthdate}}" required="1">
+                                            <input type="date" class="form-control" class="datepicker"  name="birthdate" value="{{row.birthdate}}" required="1">
                                         </div>
 
                                         <div class="form-group">
@@ -91,13 +92,20 @@
                                         </div>
 
 
-
                                         <div class="form-group">
                                             <label>Telefone</label>
                                             <input type="number" class="form-control" name="phone" value="{{row.phone}}" required="1">
                                         </div>
 
+                                        <div class="form-group">
+                                            <label>Data</label>
+                                            <input type="date" class="form-control" name="adddate" value="{{row.adddate}}" required="1">
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label>Horário</label>
+                                            <input type="time" class="form-control" name="hour" value="{{row.hour}}" required="1">
+                                        </div>
 
                                         <div class="modal-footer">
                                             <button class="btn btn-info" type="submit"> Atualizar</button>
@@ -115,7 +123,7 @@
                 </table>
 
             </div>
-
+           
             <!-- Model for adding employee -->
             <div id="mymodal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -124,31 +132,38 @@
                             <h4 class="modal-title"> Novo Agendamento </h4>
                         </div>
                         <div class="modal-body">
-                            <form action="{{url_for('insert')}}" method="POST">
+                            <form action="{{url_for('insert')}}"  method="POST">
 
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="text" class="form-control" name="nome" required="1">
+                                    <input type="text" class="form-control" placeholder="NOME" name="nome" required="1">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Sobrenome</label>
-                                    <input type="text" class="form-control" name="lastname" required="1">
+                                    <input type="text" class="form-control" placeholder="SOBRENOME"name="lastname" required="1">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Data de Nascimento</label>
-                                    <input type="date" class="form-control" name="birthdate" required="1">
+                                    <input type="date" class="form-control"  placeholder="DATA DE NASCIMENTO" name="birthdate" required="1">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" name="email" required="1">
+                                    <input type="email" class="form-control" placeholder="EMAIL" name="email" required="1">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Telefone</label>
-                                    <input type="number" class="form-control" name="phone" required="1">
+                                    <input type="number" class="form-control" placeholder="TELEFONE" name="phone" required="1">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Data</label>
+                                    <input type="date" class="form-control" placeholder="DATA" name="adddate" required="1">
+                                    <label>Horário</label>
+                                    <input type="time" class="form-control" placeholder="HORÁRIO" name="hour"  required="1">
                                 </div>
 
                                 <div class="modal-footer">

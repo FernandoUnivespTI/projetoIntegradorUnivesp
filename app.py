@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy 
 import os
+import time
+from datetime import date
 
 app = Flask(__name__)
 app.secret_key = "Secret Key"
@@ -18,14 +20,17 @@ class Crud(db.Model):
     birthdate = db.Column(db.String(100))
     email = db.Column(db.String(100))
     phone = db.Column(db.String(100))
-    
+    adddate = db.Column(db.String(100)) 
+    hour = db.Column(db.String(100))
 
-    def __init__(self, name, lastname, birthdate, email, phone):
+    def __init__(self, name, lastname, birthdate, email, phone, adddate, hour):
         self.name = name
         self.lastname = lastname
         self.birthdate = birthdate
         self.email = email
         self.phone = phone
+        self.adddate = adddate
+        self.hour = hour
        
 
 @app.route('/')
@@ -41,9 +46,11 @@ def insert():
         birthdate = request.form['birthdate']
         email = request.form['email']
         phone = request.form['phone']
+        adddate = request.form['adddate']
+        hour = request.form['hour']
         
 
-        my_data = Crud(name, lastname, birthdate, email, phone)
+        my_data = Crud(name, lastname, birthdate, email, phone, adddate, hour)
         db.session.add(my_data)
         db.session.commit()
 
@@ -65,9 +72,10 @@ def form():
         birthdate = request.form['birthdate']
         email = request.form['email']
         phone = request.form['phone']
-        
+        adddate = request.form['adddate']
+        hour = request.form['hour']
 
-        my_data = Crud(name, lastname, birthdate, email, phone)
+        my_data = Crud(name, lastname, birthdate, email, phone, adddate, hour)
         db.session.add(my_data)
         db.session.commit()
 
@@ -86,6 +94,8 @@ def update():
         my_date.birthdate = request.form['birthdate']
         my_date.email = request.form['email']
         my_date.phone = request.form['phone']
+        my_date.adddate = request.form['adddate']
+        my_date.hour = request.form['hour']
         
         db.session.commit()
         flash("Paciente alterado com sucesso")
@@ -99,6 +109,7 @@ def delete(id):
 
     flash("Dados do paciente foram excluídos com sucesso")
     return redirect(url_for('index'))
+    
 
 if __name__ == "__main__":
     app.run(debug = True)
