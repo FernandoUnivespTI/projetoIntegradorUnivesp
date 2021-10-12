@@ -41,21 +41,33 @@
                                     <label>Email</label>
                                     <input type="email" class="form-control" placeholder="EMAIL" name="email" placeholder="" required="1">
                                 </div>
-
+                    
+                              <br>
                                 <h3>Escolha o Dia e Horário</h3>
+
+                               <p>Atenção se necessitar de outros horários entre em contato.(xx)(0000.0000)</p><br>
 
                                 <div class="row form-group">
                                     <div class="col-4">
-                                        <label>Data</label>
+                                        <label>Data (Segunda a Sexta)</label>
                                         <input type="date" class="form-control form-control-lg" name="adddate" placeholder="Data" required="1">
                                     </div>
-                                    <div class="col-4 form-group">
-                                        <label>Horario</label>
-                                        <input type="time" class="form-control form-control-lg" name="hour" placeholder="Horario" required="1">
+
+                                    <div class="col-4">
+                                        <label >Horário</label>
+                                        <select id="inputState" class="form-control form-control-lg" name="hour"  required="1" class="form-select">
+                                          <option selected>Escolha...</option>
+                                          <option value="08:00">08:00</option>
+                                          <option value="11:00">11:00</option>
+                                          <option value="14:00">14:00</option>
+                                          <option value="15:30">15:30</option>
+                                          <option value="18:00">18:00</option>
+                                          <option value="19:00">19:00</option>
+                                          <option value="19:30">19:30</option>
+                                        </select>
                                     </div>
                                 </div>
-                               
-                                
+
                                 <div class="form-group">
                                     <button class="btn_f btn btn-primary" type="submit"> Enviar e Aguardar Contato </button>  
                                 </div>

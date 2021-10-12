@@ -15,7 +15,7 @@
         <div class="col-md-13">
             <div class="jumbotron p-3">
                 <div class="col-5 alert alert-secondary" role="alert">
-                <h1 class="h1-2">  <strong> Gerenciar</strong> <b>Agenda</b> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h1>
+                <h1 class="h1-2">  <strong> Gerenciar</strong> Agenda <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h1>
             </div>
                 {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
 
@@ -37,14 +37,11 @@
                         <th>Email</th>
                         <th>Telefone</th>
                         <th>Agendamento</th>
-                  
-                
                         <th>Ação</th>
                     </tr>
                     
                     {% for row in all_data %}
                     
-                
                     <tr class="tbl">
                         <td>{{row.id}}</td>
                         <td>{{row.name}} {{row.lastname}}</td>
@@ -52,14 +49,14 @@
                         <td>{{row.email}}</td>
                         <td>{{row.phone}}</td>
                         <td>{{row.adddate}} ás {{row.hour}}</td>
-                            
-                        
-                        <td>
+                    <td>
                             <a href="/update/{{row.id}}" class="btn btn-primary" data-toggle="modal" data-target="#modaledit{{row.id}}">Editar</a>
                             <a href="/delete/{{row.id}}" class="remove btn btn-danger" onclick="return confirm('Você tem certeza que quer deletar ?')">Excluir</a>
                         </td>
                     </tr>
- 
+
+
+                          
                     <!-- Model for updating employee data -->
                     <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -181,4 +178,7 @@
     </div>
 </div>
 </body>
+
+
 {% endblock %}
+

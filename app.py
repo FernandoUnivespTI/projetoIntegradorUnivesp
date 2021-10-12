@@ -1,8 +1,8 @@
+from sqlite3.dbapi2 import Cursor
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy 
 import os
-import time
-from datetime import date
+from sqlalchemy import or_
 
 app = Flask(__name__)
 app.secret_key = "Secret Key"
@@ -35,9 +35,9 @@ class Crud(db.Model):
 
 @app.route('/')
 def index():
-    all_data = Crud.query.all()
+    all_data = Crud.query.order_by(Crud.id.desc()).all()
     return render_template("index.html", all_data = all_data)
-
+    
 @app.route('/insert', methods = ['POST'])
 def insert():
     if request.method == 'POST':
@@ -52,6 +52,7 @@ def insert():
 
         my_data = Crud(name, lastname, birthdate, email, phone, adddate, hour)
         db.session.add(my_data)
+        
         db.session.commit()
 
         flash("Paciente inserido com sucesso")
@@ -109,7 +110,8 @@ def delete(id):
 
     flash("Dados do paciente foram excluídos com sucesso")
     return redirect(url_for('index'))
-    
+
+
 
 if __name__ == "__main__":
     app.run(debug = True)
