@@ -8,11 +8,11 @@
 <!-- Body section -->
 {% block body %}
 
-<body>
+
     
-<div class="container">
+<!--<div class="container table-responsive">
     <div class="row">
-        <div class="col-md-13">
+        <div class="col-md-12">
             <div class="jumbotron p-3">
                 <div class="col-5 alert alert-secondary" role="alert">
                 <h1 class="h1-2">  <strong> Gerenciar</strong> Agenda <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h1>
@@ -27,9 +27,47 @@
                     </button> {{message}}
                 </div>
 
-                {% endfor %} {% endif %} {%endwith%}
+                {% endfor %} {% endif %} {%endwith%} -->
+
+<div class="container table-responsive">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron p-3">
                 
-                 <table id="lista" class=" table table-dark table-hover">
+                <h1 class="h1-2">Gerenciar <b>Agenda</b> <button type="button" class="btn  btn-secondary float-right" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h1>
+                
+                        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                            <span aria-hidden="true">
+                                x
+                            </span>
+                        </button> {{message}}
+                    </div>
+                
+                                {% endfor %} {% endif %} {%endwith%}
+            <div class="d-grid gap-2">
+                <div class="row ">
+                <div class="col-md-8 ">
+                  <p class="search"> <strong>  {{ tag}}</strong> </p>
+                </div>
+                    <div class="col-md-4">
+                     <form action="" method="post" autocomplete="off"> 
+                     <div class="row">
+                      <div class="col-md-6">
+                      <input type="text" class="form-control" name="tag" id="tag"  placeholder="Digite um nome"/> 
+                      </div>
+                      <div class="col-md-6" alig="left">
+                      <input type="submit" value="Search" class="form-control btn btn-dark " name=""> 
+                      </div>
+                     </form> 
+                     </div>
+                    </div>
+                   </div> 
+                </div>
+                 
+                 <table id="lista" class=" table  table-hover">
                     <tr class="tb">
                         <th>ID</th>
                         <th>Nome Sobrenome</th>
@@ -40,7 +78,7 @@
                         <th>Ação</th>
                     </tr>
                     
-                    {% for row in all_data %}
+                    {% for row in all_data.items %}
                     
                     <tr class="tbl">
                         <td>{{row.id}}</td>
@@ -50,8 +88,10 @@
                         <td>{{row.phone}}</td>
                         <td>{{row.adddate}} ás {{row.hour}}</td>
                     <td>
-                            <a href="/update/{{row.id}}" class="btn btn-primary" data-toggle="modal" data-target="#modaledit{{row.id}}">Editar</a>
-                            <a href="/delete/{{row.id}}" class="remove btn btn-danger" onclick="return confirm('Você tem certeza que quer deletar ?')">Excluir</a>
+                        <div class="d-grid gap-2">
+                            <a href="/update/{{row.id}}" class="update btn btn-primary" data-toggle="modal" data-target="#modaledit{{row.id}}">Editar</a>
+                            <a href="/delete/{{row.id}}" class="remove btn btn-dark" onclick="return confirm('Você tem certeza que quer deletar ?')">Excluir</a>
+                        </div>
                         </td>
                     </tr>
 
@@ -114,13 +154,42 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+            </div>
                     {% endfor %}
 
                 </table>
-
-            </div>
-           
+                <nav aria-label="Page navigation  example">
+                    <ul class="pagination">
+                        {% if all_data.has_prev %}
+                          <li class="page-item"> <a class="page-link bg-dark" href="{{ url_for('index', page=all_data.prev_num) }}">Anterior</a></li>
+                        {% else %}
+                          <li class="page-item"><a class="page-link btn disabled bg-dark" href="#">Anterior</a></li>
+                        {% endif %}
+                
+                {% for page in all_data.iter_pages(left_edge=3, right_edge=3) %}
+                {% if page %}
+                
+                {% if page==all_data.page %}
+                <li class="page-item active"><a class="page-link bg-dark" href="{{ url_for('index', page=page) }}">{{ page }}</a></li>
+                {% else %}
+                <li class="page-item "><a class="page-link bg-dark" href="{{ url_for('index', page=page) }}">{{ page }}</a></li>
+                {% endif %}
+                
+                {% else %}
+                <li class="page-item disabled" id="example_ellipsis"><a href="#" class="page-link ">…</a></li> 
+                {% endif %}
+                {% endfor %}
+                
+                        {% if all_data.has_next %}
+                          <li class="page-item"> <a class="page-link bg-dark" href="{{ url_for('index', page=all_data.next_num) }}">Próximo</a></li>
+                        {% else %}
+                          <li class="page-item"><a class="page-link btn disabled" href="#">Próximo</a></li>
+                        {% endif %}
+                
+                    </ul>
+                </nav>
+             
             <!-- Model for adding employee -->
             <div id="mymodal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -167,17 +236,13 @@
                                     <button class="btn btn-success" type="submit"> Novo Agendamento </button>
                                     <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                 </div>
-
                             </form>
                         </div>
                     </div>  
                 </div>
             </div>
-
         </div>
-    </div>
-</div>
-</body>
+
 
 
 {% endblock %}

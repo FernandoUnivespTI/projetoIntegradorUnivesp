@@ -33,10 +33,18 @@ class Crud(db.Model):
         self.hour = hour
        
 
-@app.route('/')
-def index():
-    all_data = Crud.query.order_by(Crud.id.desc()).all()
-    return render_template("index.html", all_data = all_data)
+@app.route('/', methods=['GET', 'POST'], defaults={"page": 1})
+@app.route('/<int:page>', methods=['GET', 'POST'])
+def index(page):
+    page = page
+    pages = 5
+    all_data = Crud.query.order_by(Crud.id.desc()).paginate(page,pages,error_out=False)
+    if request.method == 'POST' and 'tag' in request.form:
+        tag = request.form["tag"]
+        search = "%{}%".format(tag)
+        all_data = Crud.query.filter(Crud.name.like(search)).paginate(per_page=pages, error_out=False)
+        return render_template("index.html", all_data = all_data, tag=tag)
+    return render_template("index.html", all_data = all_data,)
     
 @app.route('/insert', methods = ['POST'])
 def insert():
@@ -80,7 +88,7 @@ def form():
         db.session.add(my_data)
         db.session.commit()
 
-        flash("Paciente inserido com sucesso")
+        flash("Sua consulta foi agendada !!! Aguarde contato")
         return redirect(url_for('form'))
 
 ######################################################################

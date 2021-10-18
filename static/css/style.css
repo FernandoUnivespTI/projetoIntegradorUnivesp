@@ -1,6 +1,6 @@
 .table{
-    background-color: #0059A4;
-    color:#ffff
+    background-color: #FFFFFF;
+    
 }
 
 .tb{
@@ -16,16 +16,22 @@
 }
 
 .container{
-    background-color: #020BFA;
-    margin-top: 60px;
+    background-color: #F5F5F7;
+    margin-top: 40px;
+    
 }
 
 body{
-    background-color: #2DF3FA;
+    background-color: #FFFF;
+    margin-bottom: 10%;
+}
+
+.update{
+    background-color: #0077ED
 }
 
 .remove{
-    background-color: #C71004;
+    background-color: #2E2E2E;
 }
 
 .modal-header{
@@ -41,13 +47,10 @@ h4{
 }
 
 .fm{
-    background-color: #212529;
-    
+    background-color: #FFFFFF; 
     margin-bottom: 100px;
     padding-top: 30px;
-    padding-bottom: 30px;
-    
-    
+    padding-bottom: 30px;      
 }
 
 .form-group{
@@ -55,24 +58,32 @@ h4{
 }
 
 .h1-2{
-    font-family:josefin sans;
-    font-size: 30px;  
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 25px;  
+    
 }
 
 h2{
-    color: #fff;
+    color: #494949;
     text-align: center;
-    font-family:josefin sans;
-    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    padding-bottom: 20px;
 }
 
 h3{
-    color: #fff;
-    text-align: center;
+    color: #666;
     font-family:josefin sans;
-    font-size: 50px;
+    font-size: 19px;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    
+}
+
+hr{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    height:30px
 }
 
 .dh{
@@ -80,24 +91,31 @@ h3{
 }
 
 .form_text{
-color: #fff;
+color: #666;
 font-family:josefin sans;
-font-size: 25px;
+font-size: 18px;
 
 }
 
 .btn_f{
     font-family:josefin sans;
-    font-size: 25px;
-    margin-top: 25px;
-    
-    
+    margin-top: 25px;  
 }
 
 .h4-3{
     text-align: center;
 }
 
-p{
-    text-align: center;
+
+.search{
+    font-family:josefin sans;
+    font-size: 20px;
+    color: #666;
 }
+
+.page-link{
+    color: #fff;
+
+}
+
+
