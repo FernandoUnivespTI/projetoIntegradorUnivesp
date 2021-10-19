@@ -108,45 +108,45 @@
                                     <form action="{{url_for('update')}}" method="POST">
 
                                         <div class="form-group">
-                                            <label>Nome</label>
+                                            <label class="update-form">Nome</label>
                                             <input type="hidden" name="id" value="{{row.id}}">
                                             <input type="text" class="form-control" name="nome" value="{{row.name}}" required="1">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Sobrenome</label>
+                                            <label class="update-form">Sobrenome</label>
                                             <input type="text" class="form-control" name="lastname" value="{{row.lastname}}" required="1">
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label>Data de Nascimento</label>
+                                            <label class="update-form">Data de Nascimento</label>
                                             <input type="date" class="form-control" class="datepicker"  name="birthdate" value="{{row.birthdate}}" required="1">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Email</label>
+                                            <label class="update-form">Email</label>
                                             <input type="email" class="form-control" name="email" value="{{row.email}}" required="1">
                                         </div>
 
 
                                         <div class="form-group">
-                                            <label>Telefone</label>
+                                            <label class="update-form">Telefone</label>
                                             <input type="number" class="form-control" name="phone" value="{{row.phone}}" required="1">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Data</label>
+                                            <label class="update-form">Data</label>
                                             <input type="date" class="form-control" name="adddate" value="{{row.adddate}}" required="1">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Horário</label>
+                                            <label class="update-form">Horário</label>
                                             <input type="time" class="form-control" name="hour" value="{{row.hour}}" required="1">
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button class="btn btn-info" type="submit"> Atualizar</button>
-                                            <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                            <button class="btn btn-primary" type="submit"> Atualizar</button>
+                                            <button class="remove btn btn-dark" data-dismiss="modal">Fechar</button>
                                         </div>
 
                                     </form>
@@ -201,40 +201,40 @@
                             <form action="{{url_for('insert')}}"  method="POST">
 
                                 <div class="form-group">
-                                    <label>Nome</label>
-                                    <input type="text" class="form-control" placeholder="NOME" name="nome" required="1">
+                                    <label class="update-form">Nome</label>
+                                    <input type="text" class="form-control" placeholder="Nome" name="nome" required="1">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Sobrenome</label>
-                                    <input type="text" class="form-control" placeholder="SOBRENOME"name="lastname" required="1">
+                                    <label class="update-form">Sobrenome</label>
+                                    <input type="text" class="form-control" placeholder="Sobrenome"name="lastname" required="1">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Data de Nascimento</label>
-                                    <input type="date" class="form-control"  placeholder="DATA DE NASCIMENTO" name="birthdate" required="1">
+                                    <label class="update-form">Data de Nascimento</label>
+                                    <input type="date" class="form-control"  placeholder="Data de Nascimento" name="birthdate" required="1">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" placeholder="EMAIL" name="email" required="1">
+                                    <label class="update-form">Email</label>
+                                    <input type="email" class="form-control" placeholder="e-mail" name="email" required="1">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Telefone</label>
-                                    <input type="number" class="form-control" placeholder="TELEFONE" name="phone" required="1">
+                                    <label class="update-form">Telefone</label>
+                                    <input type="number" class="form-control" placeholder="Telefone" name="phone" required="1">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Data</label>
-                                    <input type="date" class="form-control" placeholder="DATA" name="adddate" required="1">
-                                    <label>Horário</label>
-                                    <input type="time" class="form-control" placeholder="HORÁRIO" name="hour"  required="1">
+                                    <label class="update-form">Data</label>
+                                    <input type="date" class="form-control" placeholder="Data" name="adddate" required="1">
+                                    <label class="update-form">Horário</label>
+                                    <input type="time" class="form-control" placeholder="Horário" name="hour"  required="1">
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button class="btn btn-success" type="submit"> Novo Agendamento </button>
-                                    <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    <button class="btn btn-primary" type="submit"> Agendar </button>
+                                    <button class="btn btn-dark" data-dismiss="modal">Fechar</button>
                                 </div>
                             </form>
                         </div>
