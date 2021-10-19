@@ -73,6 +73,12 @@ def indexfo():
     all_data = Crud.query.all()
     return render_template("form.html", all_data = all_data)
 
+@app.route('/login')
+def lo():
+    all_data = Crud.query.all()
+    return render_template("login.html", all_data = all_data)
+
+
 @app.route('/form', methods = ['POST'])
 def form():
     if request.method == 'POST':
