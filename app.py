@@ -1,6 +1,8 @@
 from sqlite3.dbapi2 import Cursor
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_sqlalchemy import SQLAlchemy 
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from .models import User 
 import os
 from sqlalchemy import or_
 
@@ -12,6 +14,28 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + os.path.join(path , 'data
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+#########
+login_manager = LoginManager ()
+login_manager . login_view  =  'auth.login'
+login_manager . init_app ( app )
+
+
+@ login_manager . user_loader
+def  load_user ( user_id ):
+        # uma vez que o user_id é apenas a chave primária de nossa tabela de usuário, use-o na consulta para o usuário
+            # since the user_id is just the primary key of our user table, use it in the query for the user
+            return User.query.get(int(user_id))
+
+            # blueprint for auth routes in our app
+from .auth import auth as auth_blueprint
+app.register_blueprint(auth_blueprint)
+
+        # blueprint for non-auth parts of app
+from .main import main as main_blueprint
+app.register_blueprint(main_blueprint)
+
+
 
 class Crud(db.Model):
     id = db.Column(db.Integer , primary_key = True)
@@ -72,6 +96,9 @@ def insert():
 def indexfo():
     all_data = Crud.query.all()
     return render_template("form.html", all_data = all_data)
+
+
+
 
 @app.route('/form', methods = ['POST'])
 def form():
