@@ -1,0 +1,82 @@
+<!-- Inheriting all linked files -->
+{% extends 'base.html' %} {% include 'header.html' %} 
+
+<!-- head section -->
+{% block title %} Projeto Integrador {% endblock %}
+
+
+<!-- Body section  -->
+{% block body %}
+
+<!-- Header - set the background image for the header in the line below-->
+<header class="py-5 bg-image-full" >
+    <div class="text-center my-5">
+        <img class="img-fluid rounded-circle mb-4" src="static/images/foto.jpg" alt=some  width=100 height=50>
+        <h1 class="text-white fs-3 fw-bolder">Ana Laura das Dores</h1>
+        <p class="text-white ">Fisioterapeuta</p>
+    </div>
+</header>
+
+<!-- Testimonials-->
+<section class="text100 testimonials text-center ">
+    <div class="container">
+        <h2 class="mb-5">Conheça aqui os serviços prestados...</h2>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="static/images/fisioterapia.png" alt=some  width=200 height=150>
+                    <h5>Pilates</h5>
+                    <p class="font-weight-light mb-0">"Pilates fitness, Pilates clínico, Pilates postural e personal Pilates"</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="static/images/fisioterapia-2.jpg" alt=some  width=200 height=150>
+                    <h5>RPG - REEDUCAÇÃO POSTURAL GLOBAL</h5>
+                    <p class="font-weight-light mb-0">"Método de tratamento que corrige a postura, melhora a dor nas articulações e previne problemas ortopédicos."</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="static/images/fisioterapia-3.jpg" alt=some  width=200 height=150>
+                    <h5>Fisioterapia</h5>
+                    <p class="font-weight-light mb-0">"Fisioterapia Especializada em
+                        ortopedia, traumatologia, reumatologia, geriatria"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="page-section bg-primary text-white mb-0">
+    <div class="container">
+        <a href="http://127.0.0.1:5000/form"> <h2 class="page-section-heading text-center text-uppercase text-white">Agende Sua Consulta <br>Aqui</h2></a>
+            <div class="page-section-heading text-center text-uppercase text-white">
+                <p class="lead">Escolha um dia e horário entraremos em contato</p>     
+    </div>
+    </div>
+</section>  
+
+
+<!-- Contact section-->
+<section class="text200">
+    <div class="container bg-light px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <h2>Contate-nos</h2>
+                <p class="lead"> FONE: (11)1234.5678 
+                    <br> ou <a href="http://127.0.0.1:5000/form" style="text-decoration:none"> agende sua consulta</a>
+                    <br>  ENDEREÇO: Rua Outono  1111
+                    <br> Vila Jardim Primavera (Lapa) - SP
+                    
+                    CEP 19000-0001
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'footer.html' %}
+
+
+{% endblock %}

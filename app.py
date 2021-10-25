@@ -1,5 +1,10 @@
 from sqlite3.dbapi2 import Cursor
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
+from flask import Flask, request, Response, abort, render_template
+from collections import defaultdict
+
 from flask_sqlalchemy import SQLAlchemy 
 import os
 from sqlalchemy import or_
@@ -31,10 +36,54 @@ class Crud(db.Model):
         self.phone = phone
         self.adddate = adddate
         self.hour = hour
-       
+        
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+class User(UserMixin):
+    def __init__(self, id, username, password):
+        self.id = id
+        self.username = username
+        self.password = password
+
+
+users = {
+    1: User(1, 'admin', 'admin'),
+    
+}
+
+nested_dict = lambda: defaultdict(nested_dict)
+user_check = nested_dict()
+for i in users.values():
+    user_check[i.username]['password'] = i.password
+    user_check[i.username]['id'] = i.id
+
+################################ login #####################################
+
+@login_manager.user_loader
+def load_user(id):
+    return users.get(int(id))
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username', None)
+        password = request.form.get('password', None)
+        if username in user_check and password == user_check[username]['password']:
+            id = user_check[username]['id']
+            login_user(users.get(id))
+
+            return redirect(url_for('index'))
+        else:
+            return abort(401)
+    else:
+        return render_template('login.html')
+
 
 @app.route('/', methods=['GET', 'POST'], defaults={"page": 1})
 @app.route('/<int:page>', methods=['GET', 'POST'])
+@login_required
 def index(page):
     page = page
     pages = 5
@@ -66,7 +115,7 @@ def insert():
         flash("Paciente inserido com sucesso")
         return redirect(url_for('index'))
 
-############################################################
+######################## form ####################################
 
 @app.route('/form')
 def indexfo():
@@ -96,8 +145,17 @@ def form():
         flash("Sua consulta foi agendada !!! Aguarde contato")
         return redirect(url_for('form'))
 
-######################################################################
+############################# end form #########################################
 
+############################ home ##############################################
+
+@app.route('/home')
+def home():
+    all_data = Crud.query.all()
+    return render_template("home.html", all_data = all_data)
+
+
+######################### home end #############################################################
 
 @app.route('/update', methods = ['POST'])
 def update():
@@ -123,7 +181,6 @@ def delete(id):
 
     flash("Dados do paciente foram excluídos com sucesso")
     return redirect(url_for('index'))
-
 
 
 if __name__ == "__main__":
