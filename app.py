@@ -122,6 +122,7 @@ def indexfo():
     all_data = Crud.query.all()
     return render_template("form.html", all_data = all_data)
 
+
 @app.route('/login')
 def lo():
     all_data = Crud.query.all()
@@ -146,6 +147,12 @@ def form():
         return redirect(url_for('form'))
 
 ############################# end form #########################################
+########sobre#######################################################################
+@app.route('/sobre')
+def sobre():
+    all_data = Crud.query.all()
+    return render_template("sobre.html", all_data = all_data)
+#####fimsobre############################################################################
 
 ############################ home ##############################################
 
