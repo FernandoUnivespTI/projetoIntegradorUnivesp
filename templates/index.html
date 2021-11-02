@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="jumbotron p-3">
-                
+        
                 <h1 class="h1-2">Gerenciar <b>Agenda</b> <button type="button" class="btn  btn-secondary float-right" data-toggle="modal" data-target="#mymodal">Novo Agendamento</button> </h1>
                 
                         {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
@@ -28,201 +28,198 @@
                     </div>
                 
                                 {% endfor %} {% endif %} {%endwith%}
-            <div class="d-grid gap-2">
-                <div class="row ">
-                <div class="col-md-8 ">
-                  <p class="search"> <strong>  {{ tag}}</strong> </p>
+    <div class="d-grid gap-2">
+        <div class="row ">
+            <div class="col-md-8 ">
+                <p class="search"> <strong>  {{ tag}}</strong> </p>
+            </div>
+                <div class="col-md-4">
+                        <form action="" method="post" autocomplete="off"> 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="tag" id="tag"  placeholder="Digite um nome"/> 
+                                </div>
+                                <div class="col-md-6" alig="left">
+                                    <input type="submit" value="Search" class="form-control btn btn-dark " name=""> 
+                                </div>
+                        </form> 
                 </div>
-                    <div class="col-md-4">
-                     <form action="" method="post" autocomplete="off"> 
-                     <div class="row">
-                      <div class="col-md-6">
-                      <input type="text" class="form-control" name="tag" id="tag"  placeholder="Digite um nome"/> 
-                      </div>
-                      <div class="col-md-6" alig="left">
-                      <input type="submit" value="Search" class="form-control btn btn-dark " name=""> 
-                      </div>
-                     </form> 
-                     </div>
-                    </div>
-                   </div> 
-                </div>
+            </div>
+        </div> 
+    </div>
                  
-                 <table id="lista" class=" table table-bordered table-hover">
-                    <tr class="tb">
-                        <th>ID</th>
-                        <th>Nome Sobrenome</th>
-                        <th>Data de Nasc.</th>
-                        <th>Email</th>
-                        <th>Telefone</th>
-                        <th>Agendamento</th>
-                        <th>Ação</th>
-                    </tr>
-                    
-                    {% for row in all_data.items %}
-                    
-                    <tr class="tbl">
-                        <td>{{row.id}}</td>
-                        <td>{{row.name}} {{row.lastname}}</td>
-                        <td>{{row.birthdate}}</td>
-                        <td>{{row.email}}</td>
-                        <td>{{row.phone}}</td>
-                        <td>{{row.adddate}} ás {{row.hour}}</td>
-                    <td>
-                        <div class="d-grid gap-2 d-md-block">
-                            <a href="/update/{{row.id}}" class="update btn btn-primary" data-toggle="modal" data-target="#modaledit{{row.id}}">Editar</a>
-                            <a href="/delete/{{row.id}}" class="remove btn btn-dark" onclick="return confirm('Você tem certeza que quer deletar ?')">Excluir</a>
-                        </div>
-                        </td>
-                    </tr>
+    <table id="lista" class=" table table-bordered table-hover">
+        <tr class="tb">
+            <th>ID</th>
+            <th>Nome Sobrenome</th>
+            <th>Data de Nasc.</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Agendamento</th>
+            <th>Ação</th>
+        </tr>
+    
+    {% for row in all_data.items %}
+    
+        <tr class="tbl">
+            <td>{{row.id}}</td>
+            <td>{{row.name}} {{row.lastname}}</td>
+            <td>{{row.birthdate}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.phone}}</td>
+            <td>{{row.adddate}} ás {{row.hour}}</td>
+        <td>
 
+            <div class="d-grid gap-2 d-md-block">
+                <a href="/update/{{row.id}}" class="update btn btn-primary" data-toggle="modal" data-target="#modaledit{{row.id}}">Editar</a>
+                <a href="/delete/{{row.id}}" class="remove btn btn-dark" onclick="return confirm('Você tem certeza que quer deletar ?')">Excluir</a>
+            </div>
+        </td>
+    </tr>
 
                           
-                    <!-- Model for updating employee data -->
-                    <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title"> Atualizar dados do Paciente </h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{url_for('update')}}" method="POST">
+<!-- Model for updating employee data -->
+<div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Atualizar dados do Paciente </h4>
+            </div>
+        <div class="modal-body">
+            <form action="{{url_for('update')}}" method="POST">
+                <div class="form-group">
+                    <label class="update-form">Nome</label>
+                    <input type="hidden" name="id" value="{{row.id}}">
+                    <input type="text" class="form-control" name="nome" value="{{row.name}}" required="1">
+                </div>
 
-                                        <div class="form-group">
-                                            <label class="update-form">Nome</label>
-                                            <input type="hidden" name="id" value="{{row.id}}">
-                                            <input type="text" class="form-control" name="nome" value="{{row.name}}" required="1">
-                                        </div>
+            <div class="form-group">
+                <label class="update-form">Sobrenome</label>
+                <input type="text" class="form-control" name="lastname" value="{{row.lastname}}" required="1">
+            </div>
+            
+            <div class="form-group">
+                <label class="update-form">Data de Nascimento</label>
+                <input type="date" class="form-control" class="datepicker"  name="birthdate" value="{{row.birthdate}}" required="1">
+            </div>
 
-                                        <div class="form-group">
-                                            <label class="update-form">Sobrenome</label>
-                                            <input type="text" class="form-control" name="lastname" value="{{row.lastname}}" required="1">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="update-form">Data de Nascimento</label>
-                                            <input type="date" class="form-control" class="datepicker"  name="birthdate" value="{{row.birthdate}}" required="1">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="update-form">Email</label>
-                                            <input type="email" class="form-control" name="email" value="{{row.email}}" required="1">
-                                        </div>
+            <div class="form-group">
+                <label class="update-form">Email</label>
+                <input type="email" class="form-control" name="email" value="{{row.email}}" required="1">
+            </div>
 
 
-                                        <div class="form-group">
-                                            <label class="update-form">Telefone</label>
-                                            <input type="number" class="form-control" name="phone" value="{{row.phone}}" required="1">
-                                        </div>
+            <div class="form-group">
+                <label class="update-form">Telefone</label>
+                <input type="number" class="form-control" name="phone" value="{{row.phone}}" required="1">
+            </div>
 
-                                        <div class="form-group">
-                                            <label class="update-form">Data</label>
-                                            <input type="date" class="form-control" name="adddate" value="{{row.adddate}}" required="1">
-                                        </div>
+            <div class="form-group">
+                <label class="update-form">Data</label>
+                <input type="date" class="form-control" name="adddate" value="{{row.adddate}}" required="1">
+            </div>
 
-                                        <div class="form-group">
-                                            <label class="update-form">Horário</label>
-                                            <input type="time" class="form-control" name="hour" value="{{row.hour}}" required="1">
-                                        </div>
+            <div class="form-group">
+                <label class="update-form">Horário</label>
+                <input type="time" class="form-control" name="hour" value="{{row.hour}}" required="1">
+            </div>
 
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" type="submit"> Atualizar</button>
-                                            <button class="remove btn btn-dark" data-dismiss="modal">Fechar</button>
-                                        </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit"> Atualizar</button>
+                <button class="remove btn btn-dark" data-dismiss="modal">Fechar</button>
+            </div>
+        </form>
+    </div>
+</div>
+        
+{% endfor %}
 
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+</table>
+<nav aria-label="Page navigation  example">
+    <ul class="pagination">
+        {% if all_data.has_prev %}
+            <li class="page-item"> <a class="page-link bg-dark" href="{{ url_for('index', page=all_data.prev_num) }}">Anterior</a></li>
+        {% else %}
+            <li class="page-item"><a class="page-link btn disabled bg-dark" href="#">Anterior</a></li>
+        {% endif %}
+
+{% for page in all_data.iter_pages(left_edge=3, right_edge=3) %}
+{% if page %}
+
+            {% if page==all_data.page %}
+            <li class="page-item active"><a class="page-link bg-dark" href="{{ url_for('index', page=page) }}">{{ page }}</a></li>
+            {% else %}
+            <li class="page-item "><a class="page-link bg-dark" href="{{ url_for('index', page=page) }}">{{ page }}</a></li>
+            {% endif %}
+
+            {% else %}
+            <li class="page-item disabled" id="example_ellipsis"><a href="#" class="page-link ">…</a></li> 
+            {% endif %}
+            {% endfor %}
+
+            {% if all_data.has_next %}
+            <li class="page-item"> <a class="page-link bg-dark" href="{{ url_for('index', page=all_data.next_num) }}">Próximo</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link btn disabled" href="#">Próximo</a></li>
+            {% endif %}
+
+    </ul>
+</nav>
+                
+
+<!-- Model for adding employee -->
+<div id="mymodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"> Novo Agendamento </h4>
+            </div>
+
+            <div class="modal-body">
+                <form action="{{url_for('insert')}}"  method="POST">
+
+                    <div class="form-group">
+                        <label class="update-form">Nome</label>
+                        <input type="text" class="form-control" placeholder="Nome" name="nome" required="1">
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label class="update-form">Sobrenome</label>
+                        <input type="text" class="form-control" placeholder="Sobrenome"name="lastname" required="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="update-form">Data de Nascimento</label>
+                        <input type="date" class="form-control"  placeholder="Data de Nascimento" name="birthdate" required="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="update-form">Email</label>
+                        <input type="email" class="form-control" placeholder="e-mail" name="email" required="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="update-form">Telefone</label>
+                        <input type="number" class="form-control" placeholder="Telefone" name="phone" required="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="update-form">Data</label>
+                        <input type="date" class="form-control" placeholder="Data" name="adddate" required="1">
+                        <label class="update-form">Horário</label>
+                        <input type="time" class="form-control" placeholder="Horário" name="hour"  required="1">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit"> Agendar </button>
+                        <button class="btn btn-dark" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>
             </div>
-                    {% endfor %}
+        </div>  
+    </div>
+</div>
 
-                </table>
-                <nav aria-label="Page navigation  example">
-                    <ul class="pagination">
-                        {% if all_data.has_prev %}
-                          <li class="page-item"> <a class="page-link bg-dark" href="{{ url_for('index', page=all_data.prev_num) }}">Anterior</a></li>
-                        {% else %}
-                          <li class="page-item"><a class="page-link btn disabled bg-dark" href="#">Anterior</a></li>
-                        {% endif %}
-                
-                {% for page in all_data.iter_pages(left_edge=3, right_edge=3) %}
-                {% if page %}
-                
-                {% if page==all_data.page %}
-                <li class="page-item active"><a class="page-link bg-dark" href="{{ url_for('index', page=page) }}">{{ page }}</a></li>
-                {% else %}
-                <li class="page-item "><a class="page-link bg-dark" href="{{ url_for('index', page=page) }}">{{ page }}</a></li>
-                {% endif %}
-                
-                {% else %}
-                <li class="page-item disabled" id="example_ellipsis"><a href="#" class="page-link ">…</a></li> 
-                {% endif %}
-                {% endfor %}
-                
-                        {% if all_data.has_next %}
-                          <li class="page-item"> <a class="page-link bg-dark" href="{{ url_for('index', page=all_data.next_num) }}">Próximo</a></li>
-                        {% else %}
-                          <li class="page-item"><a class="page-link btn disabled" href="#">Próximo</a></li>
-                        {% endif %}
-                
-                    </ul>
-                </nav>
-             
-            <!-- Model for adding employee -->
-            <div id="mymodal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title"> Novo Agendamento </h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{url_for('insert')}}"  method="POST">
-
-                                <div class="form-group">
-                                    <label class="update-form">Nome</label>
-                                    <input type="text" class="form-control" placeholder="Nome" name="nome" required="1">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="update-form">Sobrenome</label>
-                                    <input type="text" class="form-control" placeholder="Sobrenome"name="lastname" required="1">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="update-form">Data de Nascimento</label>
-                                    <input type="date" class="form-control"  placeholder="Data de Nascimento" name="birthdate" required="1">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="update-form">Email</label>
-                                    <input type="email" class="form-control" placeholder="e-mail" name="email" required="1">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="update-form">Telefone</label>
-                                    <input type="number" class="form-control" placeholder="Telefone" name="phone" required="1">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="update-form">Data</label>
-                                    <input type="date" class="form-control" placeholder="Data" name="adddate" required="1">
-                                    <label class="update-form">Horário</label>
-                                    <input type="time" class="form-control" placeholder="Horário" name="hour"  required="1">
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button class="btn btn-primary" type="submit"> Agendar </button>
-                                    <button class="btn btn-dark" data-dismiss="modal">Fechar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-        </div>
 
 {% endblock %}
 

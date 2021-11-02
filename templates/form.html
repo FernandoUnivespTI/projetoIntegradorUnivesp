@@ -12,7 +12,7 @@
 <header class="py-5 bg-image-full" >
     <div class="text-center my-5">
         <img class="img-fluid rounded-circle mb-4" src="static/images/foto.jpg" alt=”some text” width=100 height=50>
-        <h1 class="text-white fs-3 fw-bolder">Ana Laura das Dores</h1>
+        <h1 class="text-white fs-3 fw-bolder">Isabelle Amaral</h1>
         <p class="text-white mb-0">Fisioterapeuta</p>
     </div>
 </header>
@@ -24,87 +24,85 @@
 
         
                             
-     
-                        <form class="form_text col-md-6 offset-md-3" action="{{url_for('form')}}" method="POST">
+<form class="form_text col-md-6 offset-md-3" action="{{url_for('form')}}" method="POST">
 
-                        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
 
-                        <div class="mesage">
-                            <div class="alert alert alert-success" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                                    <span aria-hidden="true">
-                                        fechar
-                                    </span>
-                                </button> {{message}}
-                            </div>
-                            </div>
-                        {% endfor %} {% endif %} {%endwith%}
+    <div class="mesage">
+        <div class="alert alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">
+                    fechar
+                </span>
+            </button> {{message}}
+        </div>
+    </div>
+    {% endfor %} {% endif %} {%endwith%}
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Nome</label>
+            <input type="text" class="form-control form-control-lg" name="nome" placeholder="Nome" required="1">
+        </div>
+
+        <div class="col">
+            <label>Sobrenome</label>
+            <input type="text" class="form-control form-control-lg" name="lastname" placeholder="Sobrenome" required="1">
+        </div>
+    </div>
+
+    <div class="col">
+        <label>Data de Nascimento</label>
+        <input type="date" class="form-control form-control-lg" name="birthdate" placeholder="Data de Nascimento" required="1">
+    </div>
+
+
+    <div class="col">
+        <label>Telefone</label>
+        <input type="number" class="form-control form-control-lg" name="phone" placeholder="Telefone" required="1">
+    </div>
+
+    <div class="col">
+        <label>Email</label>
+        <input type="email" class="form-control form-control-lg" placeholder="email" name="email" placeholder="" required="1">
+    </div>
+            
+<hr>
         
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <label>Nome</label>
-                                    <input type="text" class="form-control form-control-lg" name="nome" placeholder="Nome" required="1">
-                                </div>
+    <h3>Escolha o Dia e Horário</h3>
+    <p>Atenção se necessitar de outros horários entre em contato.(xx)(0000.0000)</p>
+    
+    <div class="row">
+        <div class="col">
+            <label>Data (Segunda a Sexta)</label>
+            <input type="date" class="form-control form-control-lg" name="adddate" placeholder="Data" required="1">
+        </div>
 
-                                <div class="col">
-                                    <label>Sobrenome</label>
-                                    <input type="text" class="form-control form-control-lg" name="lastname" placeholder="Sobrenome" required="1">
-                                </div>
-                            </div>
-                           
-                                
-                                <div class="col">
-                                    <label>Data de Nascimento</label>
-                                    <input type="date" class="form-control form-control-lg" name="birthdate" placeholder="Data de Nascimento" required="1">
-                                </div>
-                               
+    <div class="">
+        <label >Horário</label>
+        <select id="inputState" class="form-control form-control-lg" name="hour"  required="1" class="form-select">
+            <option selected>Escolha...</option>
+            <option value="08:00">08:00</option>
+            <option value="11:00">11:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:30">15:30</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="19:30">19:30</option>
+        </select>
+    </div>
+    </div>
 
-                                <div class="col">
-                                    <label>Telefone</label>
-                                    <input type="number" class="form-control form-control-lg" name="phone" placeholder="Telefone" required="1">
-                                </div>
+    <div class="form-group">
+        <button class="btn_f btn btn-primary" data-bs-toggle="modal" type="submit" data-bs-target="#exampleModal"> Enviar  </button> 
+    </div>
 
-                                <div class="col">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control form-control-lg" placeholder="email" name="email" placeholder="" required="1">
-                                </div>
-                                
-                            <hr>
-                            
-                                <h3>Escolha o Dia e Horário</h3>
-                                <p>Atenção se necessitar de outros horários entre em contato.(xx)(0000.0000)</p>
-                               
-                                <div class="row">
-                                    <div class="col">
-                                        <label>Data (Segunda a Sexta)</label>
-                                        <input type="date" class="form-control form-control-lg" name="adddate" placeholder="Data" required="1">
-                                    </div>
+</form>
 
-                                    <div class="">
-                                        <label >Horário</label>
-                                        <select id="inputState" class="form-control form-control-lg" name="hour"  required="1" class="form-select">
-                                          <option selected>Escolha...</option>
-                                          <option value="08:00">08:00</option>
-                                          <option value="11:00">11:00</option>
-                                          <option value="14:00">14:00</option>
-                                          <option value="15:30">15:30</option>
-                                          <option value="18:00">18:00</option>
-                                          <option value="19:00">19:00</option>
-                                          <option value="19:30">19:30</option>
-                                        </select>
-                                    </div>
-                                </div>
+</div>
+</div>  
+</div>          
 
-                                <div class="form-group">
-                                    <button class="btn_f btn btn-primary" data-bs-toggle="modal" type="submit" data-bs-target="#exampleModal"> Enviar  </button> 
-                                </div>
-                            </section>
-                            </form>
-                            
-                           </div>
-                    </div>  
-                </div>          
-                
 {% include 'footer.html' %}
 
 
