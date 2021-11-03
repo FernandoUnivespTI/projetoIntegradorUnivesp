@@ -187,13 +187,13 @@ def page_not():
     all_data = Crud.query.all()
     return render_template("401.html", all_data = all_data)
 
-#if __name__ == "__main__":
-    #port = int(os.getenv('PORT'), '5000')
-    #app.run(host='0.0.0.0', port = port)
+if __name__ == "__main__":
+    port = int(os.getenv('PORT'), '5000')
+    app.run(host='0.0.0.0', port = port)
 
 
     
-if __name__ == "__main__":
-    app.run(debug = True)
+#if __name__ == "__main__":
+   # app.run(debug = True)
 
 
