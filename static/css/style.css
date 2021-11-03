@@ -6,11 +6,11 @@
 }
 
 .tb{
-    font-size: large;
+    font-size: 18px;
 }
 
 .tbl{
-    font-size: large;
+    font-size: 18px;
 }
 
 .btn{
@@ -162,7 +162,7 @@ header{
 
 .text100 {
     padding-top: 150px;
-    padding-bottom: 150px;
+    padding-bottom: 60px;
 }
 
 .text300{
@@ -173,6 +173,11 @@ header{
 .text200 {
     text-align: center;
 
+}
+
+.text-uppercase {
+    text-transform: uppercase!important;
+    font-size: 18px;
 }
 
 .page-section{ 
@@ -240,7 +245,7 @@ a:hover {
 .home-info-grey p {
     color: #626163;
     font-weight: 500;
-    font-size: 20px
+    font-size: 18px
 }
 
 .drop-cap {
@@ -253,13 +258,13 @@ a:hover {
 
 .drop-cap-letter {
     color: #267DFD;
-    font-size: 80px;
+    font-size: 70px;
     font-weight: 700
 }
 
 .drop-cap-text {
     color: #231833;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 500
 }
 
