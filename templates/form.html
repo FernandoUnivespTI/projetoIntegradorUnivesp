@@ -53,7 +53,7 @@
 
     <div class="col">
         <label>Data de Nascimento</label>
-        <input type="date" class="form-control form-control-lg" name="birthdate" placeholder="Data de Nascimento" required="1">
+        <input OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()" class="form-control form-control-lg" name="birthdate" placeholder="DD/MM/AAAA" required="1">
     </div>
 
 
