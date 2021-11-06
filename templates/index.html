@@ -70,7 +70,7 @@
             <td>{{row.adddate}} ás {{row.hour}}</td>
         <td>
 
-            <div class="d-grid gap-2 d-md-block">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <a href="/update/{{row.id}}" class="update btn btn-primary" data-toggle="modal" data-target="#modaledit{{row.id}}">Editar</a>
                 <a href="/delete/{{row.id}}" class="remove btn btn-dark" onclick="return confirm('Você tem certeza que quer deletar ?')">Excluir</a>
             </div>
